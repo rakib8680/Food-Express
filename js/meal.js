@@ -4,7 +4,7 @@ const loadData = async () => {
 
     const res = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=chicken');
     const data = await res.json();
-    displayData(data.meals);
+    displayData(data.meals.slice(0,8));
 };
 
 const displayData = async data => {
@@ -15,8 +15,8 @@ const displayData = async data => {
         const div = document.createElement('div');
         div.classList.add('cards')
         div.innerHTML = `
-        <div class="card  drop-shadow-md rounded-xl" style="width: auto; ">
-            <img src="${meal.strMealThumb}" class="card-img-top">
+        <div class="card  drop-shadow-md rounded-xl border-4 border-cyan-400" style="width: auto; ">
+            <img src="${meal.strMealThumb}" class="card-img-top rounded-t-xl">
             <div class="card-body">
                 <h5 class="card-title text-xl font-semibold">${meal.strMeal}</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
