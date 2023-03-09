@@ -1,9 +1,10 @@
 
 
-const loadData = async () => {
+const loadData = async (name) => {
 
-    const res = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=chicken');
+    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
     const data = await res.json();
+    console.log(data)
     displayData(data.meals.slice(0, 8));
 };
 
@@ -45,6 +46,13 @@ const spinner = a => {
 spinner(true)
 
 
+// search function 
+const searchFood = () => {
+    const inputValue = document.getElementById('inputField').value;
+    loadData(inputValue);
+
+}
+
 // Show all cards 
 const showAll = async () => {
     const res = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=chicken');
@@ -52,7 +60,6 @@ const showAll = async () => {
     displayData(data.meals);
     document.getElementById('showAll-btn').classList.add('hidden')
 }
-
 
 
 // load Single meal data 

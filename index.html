@@ -18,18 +18,22 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
-<body class=" bg-cyan-800 " onload="loadData()">
+<body class=" bg-cyan-800 " onload="loadData('chicken')">
     <h1 class="text-center text-5xl font-bold pt-20 text-cyan-50  pb-20 md:px-0 "> Find your favorite <span
             class="text-cyan-50 bg-orange-400 rounded-sm px-3 py-1 relative top-4 md:top-0">Meal</span>
     </h1>
+
 
     <!-- search bar  -->
     <section class=" flex justify-center mb-8">
         <nav class="navbar ">
             <div class="container-fluid">
                 <div class="d-flex md:flex-row flex-col " role="search">
-                    <input class="form-control me-2 pr-24  focus:ring-2 focus:ring-orange-400 placeholder:text-orange-500 text-orange-500" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-warning w-2/6 mx-auto md:mx-0 relative top-4 md:top-0" type="submit">Search</button>
+                    <input
+                        class="form-control me-2 pr-24  focus:ring-2 focus:ring-orange-400 placeholder:text-orange-500 text-orange-500"
+                        type="search" placeholder="Search" aria-label="Search" id="inputField">
+                    <button class="btn btn-outline-warning w-2/6 mx-auto md:mx-0 relative top-4 md:top-0"
+                        type="submit" onclick="searchFood()">Search</button>
                 </div>
             </div>
         </nav>
@@ -75,7 +79,7 @@
 
     <!-- Show All button  -->
     <div id="showAll-btn" class="text-center mt-10 mb-10" onclick="showAll()">
-        <button class="text-white py-2 px-4 text-xl font- bg-orange-400 rounded-sm">Show All</button>
+        <button class="text-white py-2 px-4 text-xl font- bg-orange-400 rounded-sm hover:bg-orange-500 transition duration-300  ">Show All</button>
     </div>
 
 
