@@ -1,13 +1,14 @@
 
-
+// fetch data 
 const loadData = async (name) => {
 
     const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
     const data = await res.json();
-    console.log(data)
     displayData(data.meals.slice(0, 8));
 };
 
+
+// display data 
 const displayData = async data => {
     console.log(data)
     const mealsContainer = document.getElementById('mealsContainer');
@@ -23,7 +24,7 @@ const displayData = async data => {
                 <h5 class="card-title text-xl font-semibold">${meal.strMeal}</h5>
                 <p class="card-text">${meal.strInstructions.slice(0, 140)}...</p>
 
-                <button type="button" class="btn text-white hover:bg-orange-400 font-semibold bg-cyan-500 mt-3" data-bs-toggle="modal" data-bs-target="#mealModal">
+                <button onclick="loadMeals('${meal.idMeal}')" type="button" class="btn text-white hover:bg-orange-400 font-semibold bg-cyan-500 mt-3" data-bs-toggle="modal" data-bs-target="#mealModal">
                     More Info <i class="fa-solid fa-circle-info"></i>
                 </button>
             </div>
@@ -33,6 +34,7 @@ const displayData = async data => {
     })
     spinner(false)
 };
+
 
 // spinner 
 const spinner = a => {
@@ -63,17 +65,27 @@ const showAll = async () => {
 
 
 // load Single meal data 
-const loadMeals = async () => {
-    const res = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=chicken');
+const loadMeals = async (id) => {
+    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
     const data = await res.json();
-    modalDetails(data);
+    modalDetails(data.meals[0]);
 
 };
 
 const modalDetails = async data => {
-    console.log(data)
-    // const modalTitle = document.getElementById('mealModalLabel');
-    // const modalBody = document.getElementById('modalBody')
+    const modalBody = document.getElementById('modalBody');
+    modalBody.innerHTML = '';
+    modalBody.innerHTML += `
+    <div class=" rounded-xl" style="width: auto; ">
+             <img src="${data.strMealThumb}"  >
+            <div>
+                <h5 class="card-title text-2xl font-semibold my-3 text-orange-500 font-semibold" >${data.strMeal}</h5>
+                <p class="card-text">${data.strInstructions}</p>
+                </button>
+            </div>
+        </div>
+
+    `
 };
 
 
