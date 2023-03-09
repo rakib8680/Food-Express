@@ -30,7 +30,19 @@ const displayData = async data => {
         `
         mealsContainer.appendChild(div)
     })
+    spinner(false)
 };
+
+// spinner 
+const spinner = a => {
+    if (a) {
+        document.getElementById('spinner').classList.remove('hidden');
+    }
+    else {
+        document.getElementById('spinner').classList.add('hidden')
+    }
+};
+spinner(true)
 
 
 // Show all cards 
